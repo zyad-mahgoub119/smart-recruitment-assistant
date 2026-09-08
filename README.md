@@ -36,7 +36,7 @@ dataset (from Kaggle) contains three files:
 ## Approach
 
 The full workflow lives in
-[`Jupyternotebooks_HR_Analytics_Job_Change_of_Data_Scientists.ipynb`](./Jupyternotebooks_HR_Analytics_Job_Change_of_Data_Scientists.ipynb):
+[`HR_Analytics_Job_Change_of_Data_Scientists.ipynb`](./HR_Analytics_Job_Change_of_Data_Scientists.ipynb):
 
 1. **Exploratory Data Analysis**
    - Missing-value audit — found heavy missingness in `company_type` (32%), `company_size` (31%),
