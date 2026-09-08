@@ -14,13 +14,13 @@ collected during training enrollment.
 ## Dataset
 
 The [HR Analytics: Job Change of Data Scientists](https://www.kaggle.com/datasets/arashnic/hr-analytics-job-change-of-data-scientists)
-dataset (from Kaggle) contains three files:
+dataset (from Kaggle) lives in the [`Data`](./Data) folder as three CSV files:
 
 | File | Rows | Description |
 |---|---|---|
-| `aug_train.csv` | 19,158 | Labeled training data |
-| `aug_test.csv` | 2,129 | Unlabeled data used for final hold-out evaluation |
-| `sample_submission.csv` | — | Submission format reference |
+| [`aug_train.csv`](./Data/aug_train.csv) | 19,158 | Labeled training data |
+| [`aug_test.csv`](./Data/aug_test.csv) | 2,129 | Unlabeled data used for final hold-out evaluation |
+| [`sample_submission.csv`](./Data/sample_submission.csv) | — | Submission format reference |
 
 **Features** (14 columns, excluding `enrollee_id` and `target`):
 
@@ -30,8 +30,7 @@ dataset (from Kaggle) contains three files:
 
 **Target:** `target` — `1` if the candidate is looking for a job change, `0` otherwise.
 
-> The dataset ships with the repo as a zip archive (`HR_Analytics__Job_Change_of_Data_Scientists_Dataset.zip`).
-> Unzip it before running the notebook.
+> The raw data files live in the [`Data`](./Data) folder of this repo — no unzipping needed.
 
 ## Approach
 
@@ -70,6 +69,12 @@ The full workflow lives in
 4. **Evaluation** — accuracy, precision, recall, F1, ROC-AUC, confusion matrices, and ROC curves
    for every model, on both validation and test data.
 
+Trained model artifacts (and the fitted preprocessing pipeline) are saved in the
+[`Models`](./Models) folder for reuse without retraining:
+[`catboost.pkl`](./Models/catboost.pkl), [`xgboost.pkl`](./Models/xgboost.pkl),
+[`lightgbm.pkl`](./Models/lightgbm.pkl), [`logistic_regression.pkl`](./Models/logistic_regression.pkl),
+[`random_forest.rar`](./Models/random_forest.rar), and [`preprocessor.pkl`](./Models/preprocessor.pkl).
+
 ## Results
 
 | Model | Val Accuracy | Val ROC-AUC | Test Accuracy | Test ROC-AUC |
@@ -107,19 +112,30 @@ test-set ROC-AUC with usable recall, and both showed stable validation-to-test p
 
 ```
 .
+├── Data/
+│   ├── aug_train.csv                          # Labeled training data
+│   ├── aug_test.csv                           # Unlabeled test data
+│   └── sample_submission.csv                  # Submission format reference
+├── Models/
+│   ├── catboost.pkl
+│   ├── xgboost.pkl
+│   ├── lightgbm.pkl
+│   ├── logistic_regression.pkl
+│   ├── random_forest.rar
+│   └── preprocessor.pkl                       # Fitted ColumnTransformer
 ├── Notebook/
 │   └── HR Analytics Job Change of Data Scientists.ipynb   # Full analysis & modeling notebook
-├── HR_Analytics__Job_Change_of_Data_Scientists_Dataset.zip # Raw dataset (train/test/sample submission)
-├── Project1.pdf                                             # Project brief / problem statement
+├── Presentation/
+│   └── HR Analytics Predicting Job Change...  # Slide deck summary
+├── Project Report/
+│   └── HR Analytics Project Report.docx       # Written project report
+├── LICENSE
 └── README.md
 ```
 
 ## Getting Started
 
-1. Clone the repo and unzip the dataset:
-   ```bash
-   unzip HR_Analytics__Job_Change_of_Data_Scientists_Dataset.zip -d dataset
-   ```
+1. Clone the repo — the dataset CSVs are already in [`Data/`](./Data), no unzipping needed.
 2. Install dependencies:
    ```bash
    pip install pandas numpy matplotlib seaborn scikit-learn xgboost lightgbm catboost
@@ -128,6 +144,18 @@ test-set ROC-AUC with usable recall, and both showed stable validation-to-test p
    ```bash
    jupyter notebook "Notebook/HR Analytics Job Change of Data Scientists.ipynb"
    ```
+4. To reuse a trained model instead of retraining, load it directly from [`Models/`](./Models),
+   e.g.:
+   ```python
+   import pickle
+   model = pickle.load(open("Models/catboost.pkl", "rb"))
+   preprocessor = pickle.load(open("Models/preprocessor.pkl", "rb"))
+   ```
+
+## Documentation
+
+- [Project brief](./Project%20Report/HR%20Analytics%20Project%20Report.docx) — full written report
+- [Presentation slides](./Presentation) — slide deck summary of the project
 
 ## Authors
 
