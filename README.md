@@ -36,7 +36,7 @@ dataset (from Kaggle) contains three files:
 ## Approach
 
 The full workflow lives in
-[`HR_Analytics_Job_Change_of_Data_Scientists.ipynb`](./HR_Analytics_Job_Change_of_Data_Scientists.ipynb):
+[`HR Analytics Job Change of Data Scientists.ipynb`](./Notebook/HR%20Analytics%20Job%20Change%20of%20Data%20Scientists.ipynb):
 
 1. **Exploratory Data Analysis**
    - Missing-value audit — found heavy missingness in `company_type` (32%), `company_size` (31%),
@@ -107,9 +107,10 @@ test-set ROC-AUC with usable recall, and both showed stable validation-to-test p
 
 ```
 .
-├── Jupyternotebooks_HR_Analytics_Job_Change_of_Data_Scientists.ipynb   # Full analysis & modeling notebook
-├── HR_Analytics__Job_Change_of_Data_Scientists_Dataset.zip             # Raw dataset (train/test/sample submission)
-├── Project1.pdf                                                         # Project brief / problem statement
+├── Notebook/
+│   └── HR Analytics Job Change of Data Scientists.ipynb   # Full analysis & modeling notebook
+├── HR_Analytics__Job_Change_of_Data_Scientists_Dataset.zip # Raw dataset (train/test/sample submission)
+├── Project1.pdf                                             # Project brief / problem statement
 └── README.md
 ```
 
@@ -125,7 +126,7 @@ test-set ROC-AUC with usable recall, and both showed stable validation-to-test p
    ```
 3. Open and run the notebook:
    ```bash
-   jupyter notebook Jupyternotebooks_HR_Analytics_Job_Change_of_Data_Scientists.ipynb
+   jupyter notebook "Notebook/HR Analytics Job Change of Data Scientists.ipynb"
    ```
 
 ## Authors
